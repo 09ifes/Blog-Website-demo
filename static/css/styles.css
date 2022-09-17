@@ -1,0 +1,240 @@
+.navbar-nav {
+   padding-right: 10px;
+   margin-left: auto;
+}
+.nav-item {
+   padding: 0px 10px;
+}
+.navbar {
+  position: absolute;
+  width: 100%;
+  top: 0px;
+}
+.navbar-brand {
+   padding: 10px 80px;
+   font-size:2.2rem;
+   color:white;
+   font-weight:700;
+}
+.navbar-toggler-icon {
+  width: 20px;
+  height: 20px;
+  margin-bottom: 1px;
+}
+.header-image {
+  width:100%;
+  height:400px;
+  margin-top:-100px;
+}
+.header-font {
+  /*font-family: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+ */ font-size: 1.5rem;
+  font-weight:800;
+}
+.navbar-dark .navbar-nav .nav-link {
+  color:white;
+  font-weight:700;
+}
+.nav-item {
+  margin-left:auto;
+}
+nav {
+  background-color: black;
+  opacity: 0.7;
+}
+.navbar-dark .navbar-brand:hover {
+  color: #bfc1c1 ;
+}
+.navbar-brand {
+  padding: 10px 40px;
+}
+.top-section {
+  min-height: 530px;
+  width: 100%;
+  margin-top: -100px;
+  background-image: url('https://images.squarespace-cdn.com/content/v1/5358c6dbe4b090d1c9b457db/1608131165098-39TO10ITPAQTP7I5J2L3/white-blue-brass-bespoke-kitchen-new-barnet.jpg?format=1500w');
+  text-align: center;
+}
+.about-top-section {
+  background-image: url('https://c4.wallpaperflare.com/wallpaper/46/117/219/simple-background-wallpaper-preview.jpg');
+}
+.contact-top-section {
+  background-image: url('https://media.istockphoto.com/photos/emergency-call-911-on-the-telephone-red-old-vintage-telephone-on-picture-id1125844752?k=20&m=1125844752&s=170667a&w=0&h=cisbLMYuKNrDpDb5mdFMhPReCuf9s9RXcEWZezZmLJk=');
+  background-size: 100% 530px;
+  background-repeat: no-repeat;
+}
+.create-top-section {
+  background-image: url('https://image.shutterstock.com/image-illustration/dark-theme-blue-abstract-background-260nw-2068596287.jpg');
+  background-size: 100% 570px;
+  background-repeat: no-repeat;
+}
+.login-top-section {
+  background-image: url('https://image.shutterstock.com/image-illustration/modern-design-abstract-pattern-background-260nw-2066645099.jpg');
+  background-repeat: no-repeat;
+  background-size: 100% 570px;
+}
+
+.homepage-content {
+  background-color: white;
+  padding: 50px;
+}
+.homepage-h1 {
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
+}
+.homepage-h2 {
+  font-weight: 300;
+}
+.homepage-post1 {
+  min-height: 100px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 15px 0;
+}
+.homepage-title {
+  color: white;
+  font-weight: 900;
+  margin: 50px 0 20px 0;
+  font-size: 4rem;
+  padding: 0;
+}
+.homepage-subtitle {
+  color: white;
+  font-weight: 300;
+  padding: 0;
+  margin-top: 30px;
+}
+.homepage-post-date {
+  color: #aaabab;
+  font-weight: 400;
+  font-size: large;
+  width: 50%;
+}
+p.homepage-post-date {
+  display: inline-block;
+}
+div.homepage-post-date {
+  margin-left: auto;
+  margin-right: auto;
+}
+.homepage-titles {
+  padding: 150px 30px 50px 30px;
+  position: static;
+  text-align: center;
+}
+.button {
+  background-color: #19afaf;
+  text-align: center;
+  width: 130px;
+  height: 40px;
+  color: white;
+  font-weight: 700;
+  margin: 30px 25% 30px auto;
+}
+.button:hover {
+  background-color:  #1cdada;
+  color: white;
+}
+.post-divider {
+  margin: none;
+  height: 1px;
+  background-color: #c8cbcb;
+  margin: 0 auto;
+  width: 50%;
+  border: 0;
+}
+#older-posts {
+  margin: 30px 25% 30px auto;
+}
+.footer-icons {
+  text-align: center;
+}
+.footer-icon {
+  padding: 10px;
+  font-size: 40px;
+  margin-top: 30px;
+}
+a i.footer-icon {
+  color: black;
+}
+.footer-icon:hover {
+  color: #464747;
+}
+a.homepage-read-more {
+  color: black;
+  margin: 0 auto;
+  width: 50%;
+  display: block;
+}
+a.homepage-read-more:hover {
+  color: blue;
+  text-decoration: none;
+}
+.copyright-text {
+  text-align: center;
+  color: gray;
+  margin-top: 10px;
+  font-size: 0.8rem;
+}
+.about-text {
+  min-height: 10px;
+  width: 50%;
+  margin: 0 auto;
+  padding: 20px 0;
+}
+.about-content {
+   background-color: white;
+   padding: 50px;
+   margin: 0 auto 0 auto;
+}
+.navbar-post-date {
+  margin-top: 30px;
+  color: white;
+}
+.contact-content {
+  width: 60%;
+  min-height: 400px;
+  margin: 0 auto;
+}
+.contact-form-text {
+  font-weight: 400;
+  font-size: large;
+  display: block;
+  width: 100%;
+  min-height: 80px;
+  border: 0;
+}
+.message {
+  font-weight: 400;
+  font-size: large;
+  border: 0;
+  width: 100%;
+  min-height: 160px;
+  resize: none;
+}
+input[type=text]:focus, textarea:focus {
+  outline: none;
+}
+::placeholder, :-ms-input-placeholder, ::-ms-input-placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #aaabab;
+  opacity: 1; /* Firefox */
+}
+.new-post-form {
+  margin: 0 auto 50px;
+  min-width: 30px;
+  width: 555px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

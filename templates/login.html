@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+{% include "header.html" %}
+
+<body>
+
+<div class="top-section login-top-section">
+    <nav class="navbar navbar-expand-lg navbar-dark" >
+     <div class='container-fluid'>
+      <a class="navbar-brand" href="{{ url_for('home') }}">Sam's Blog</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+         Menu <span class="navbar-toggler-icon"></span>
+        </button>
+         <div class="navbar-collapse collapse" id="navbarNav">
+           {% include "navbar.html" %}
+         </div>
+     </div>
+    </nav>
+    <div class="homepage-titles">
+     <h1 class="homepage-title" style="margin-top:100px">Log In</h1>
+     <h2 class="homepage-subtitle">You must be logged in to edit blog posts</h2>
+    </div>
+</div>
+
+
+ <div class="contact-content">
+     <form style="margin-top:50px" action="{{ url_for('login') }}" method="post">
+      {{ form.csrf_token }}
+      <div class="new-post-form">
+       {{ form.email.label(style="font-weight:bold; margin-top:20px") }} <br> {{ form.email(size=60) }}
+       {{ form.password.label(style="font-weight:bold; margin-top:20px") }} <br> {{ form.password(size=60) }} <br>
+       {% if error == True %}
+          <span style="color:red">Incorrect details!</span>
+          {% endif %}    <br>
+       {{ form.submit(class="nav-link button",style="margin-left:77%") }}
+      </div>
+     </form>
+   </div>
+
+
+
+
+
+
+
+
+
+
+{% include "footer.html" %}
+</body>
+</html>
+
+

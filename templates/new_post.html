@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+{% include "header.html" %}
+<head>
+    {{ ckeditor.load() }}
+</head>
+<body>
+<div class="top-section create-top-section">
+    <nav class="navbar navbar-expand-lg navbar-dark" >
+     <div class='container-fluid'>
+      <a class="navbar-brand" href="{{ url_for('home') }}">Sam's Blog</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+         Menu <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="navbar-collapse collapse" id="navbarNav">
+       {% include "navbar.html" %}
+      </div>
+    </div>
+   </nav>
+   <div class="homepage-titles">
+    <h1 class="homepage-title" style="margin-top: 100px">New Blog Post</h1>
+    <h2 class="homepage-subtitle">Make your wonderful blog post here</h2>
+   </div>
+
+  </div>
+
+   <div class="contact-content">
+     <form style="margin-top:50px" action="{{ url_for('create_post') }}" method="post">
+      <div class="new-post-form">
+       {{ form.title.label(style="font-weight:bold; margin-top:20px") }} <br> {{ form.title(size=60) }} <br>
+       {{ form.subtitle.label(style="font-weight:bold; margin-top:20px") }} <br> {{ form.subtitle(size=60) }} <br>
+       {{ form.author.label(style="font-weight:bold; margin-top:20px") }} <br> {{ form.author(size=60) }} <br>
+       {{ form.img_url.label(style="font-weight:bold; margin-top:20px") }} <br> {{ form.img_url(size=60) }} <br>
+       <label style="margin-top:20px; font-weight:bold">Blog Content</label> <br>
+       {{ ckeditor.create(name="body") }} <br>
+       {{ form.submit(class="nav-link button",style="margin-left:77%") }}
+      </div>
+     </form>
+   </div>
+   <hr class="post-divider" style="width:100%">
+
+   {% include "footer.html" %}
+
+
+</body>
+</html>

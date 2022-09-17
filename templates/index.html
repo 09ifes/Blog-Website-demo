@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+{% include "header.html" %}
+
+<body>
+  <div class="top-section">
+    <nav class="navbar navbar-expand-lg navbar-dark" >
+     <div class='container-fluid'>
+      <a class="navbar-brand" href="{{ url_for('home') }}">Sam's Blog</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+         Menu <span class="navbar-toggler-icon"></span>
+        </button>
+         <div class="navbar-collapse collapse" id="navbarNav">
+           {% include "navbar.html" %}
+         </div>
+     </div>
+    </nav>
+    <div class="homepage-titles">
+     <h1 class="homepage-title">Sam's Blog</h1>
+     <h2 class="homepage-subtitle">A psuedo blog</h2>
+    </div>
+  </div>
+
+   <div class="homepage-content">
+      {% for n in posts: %}
+        <div class="homepage-post1">
+         <a class="homepage-read-more" href="{{ url_for('show_post', number=n['id']) }}">
+          <h1 class="homepage-h1">{{n['title']}}</h1>
+          <h2 class="homepage-h2">{{n['subtitle']}}</h2> </a>
+          <div class="homepage-post-date">
+            <p class="homepage-post-date" style="width:80%; min-height:10px">Posted by <span style="font-weight: 600; color: black; font-style: italic;">{{ n['author'] }}</span> on {{ n['date'] }}</p>
+            {% if is_authenticated: %}
+              <a style="position: relative; left: 25%;" href="{{ url_for('delete_post',number=n['id']) }}">Delete</a>
+            {% endif %}
+          </div>
+         </div>
+        <hr class="post-divider">
+       {% endfor %}
+   </div>
+   {% if is_authenticated %}
+    <a class="nav-link button" id="older-posts" href="{{ url_for('create_post') }}">Create New Post</a>
+   {% endif %}
+  <hr class="post-divider" style="width:100%">
+
+   {% include "footer.html" %}
+
+</body>
+</html>
