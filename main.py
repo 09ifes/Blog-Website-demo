@@ -194,10 +194,11 @@ def contact():
         email1 = request.form['email']
         phone = request.form['phone']
         message = request.form['message']
+        # code below sends email
         with smtplib.SMTP('smtp-mail.outlook.com') as connection:
             connection.starttls()
             connection.login(user=my_email, password=password1)
-            connection.sendmail(from_addr=my_email, to_addrs='samuelife@hotmail.co.uk',
+            connection.sendmail(from_addr=my_email, to_addrs=f'{email1}',
                                 msg=f"subject:Support\n\nName: {name}\nEmail: {email1}\nPhone: {phone}\nMessage: {message}")
         return render_template('contact2.html', is_authenticated=is_authenticated)
 
