@@ -12,26 +12,30 @@ import datetime
 import flask_login
 from flask_login import LoginManager, UserMixin
 
-my_email = 'testsife98@hotmail.com'
-password1 = 'Pipeline123#'
-
 app = Flask(__name__)
+
 SECRET_KEY = os.urandom(32)
+my_email = os.environ['MY_EMAIL']
+password1 = os.environ['MY_PASSWORD']
 app.config['SECRET_KEY'] = SECRET_KEY
+
 ckeditor = CKEditor(app)
+
 login_manager = LoginManager()
 login_manager.init_app(app)
+
 all_posts = []
 is_authenticated = False
+
+
+class User(UserMixin):
+    id = 0
+
 
 @login_manager.user_loader
 def load_user(user_id):
     user = User()
     return user
-
-
-class User(UserMixin):
-    id = 0
 
 
 def current_date():
@@ -40,7 +44,7 @@ def current_date():
     year = datetime.date.today().year
     return f'{month} {day}, {year}'
 
-
+# use data from db to create json formatted data
 def json_convert(db_data):
     parameters = ['id', 'title', 'subtitle', 'body', 'author', 'image_url', 'date']
     data = {}
@@ -132,6 +136,7 @@ def login():
             else:
                 incorrect_details = True
                 return render_template('login.html', form=login_form, error=incorrect_details, is_authenticated=is_authenticated)
+
     return render_template('login.html', form=login_form, is_authenticated=is_authenticated)
 
 
@@ -148,6 +153,7 @@ def register():
     global is_authenticated
     email_exists = False
     register_form = LoginForm()
+
     if request.method == 'POST':
        password = request.form.get('password')
        secure_password = hash_password(password)
@@ -161,12 +167,14 @@ def register():
        except sqlite3.IntegrityError as e:
            email_exists = True
            return render_template('register.html', form=register_form, error=email_exists, is_authenticated=is_authenticated)
+
        db = sqlite3.connect("blog-posts.db")
        cursor = db.cursor()
        data = cursor.execute(f"SELECT id, password FROM users WHERE email='{request.form.get('email')}'").fetchone()
        user.id = data[0]
        is_authenticated = user.is_authenticated
        flask_login.login_user(user)
+
        return redirect("/")
     else:
         return render_template('register.html', form=register_form, error=email_exists, is_authenticated=is_authenticated)
@@ -192,6 +200,7 @@ def contact():
             connection.sendmail(from_addr=my_email, to_addrs='samuelife@hotmail.co.uk',
                                 msg=f"subject:Support\n\nName: {name}\nEmail: {email1}\nPhone: {phone}\nMessage: {message}")
         return render_template('contact2.html', is_authenticated=is_authenticated)
+
     return render_template('contact.html', is_authenticated=is_authenticated)
 
 
@@ -221,17 +230,16 @@ def show_post(number):
 @flask_login.login_required
 def edit_post(post_id):
     global is_authenticated
-    print(post_id)
     blog_form = BlogForm()
     blog_post = all_posts[post_id - 1]
     if request.method == "POST":
-        #post_id = request.args.get('post_id')
         db = sqlite3.connect("blog-posts.db")
         cursor = db.cursor()
         cursor.execute(f"UPDATE blogs SET title='{blog_form.title.data}', subtitle='{blog_form.subtitle.data}',"
                        f" body='{request.form.get('body')}', author='{blog_form.author.data}', image_url='{blog_form.img_url.data}' WHERE id={post_id}")
         db.commit()
         return redirect('/')
+
     return render_template('edit_post.html', form=blog_form, post=blog_post, number=post_id, is_authenticated=is_authenticated)
 
 
