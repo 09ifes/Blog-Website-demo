@@ -1,25 +1,32 @@
-from flask import Flask, render_template, request, redirect, url_for
-import requests
-import smtplib
-from flask_wtf import FlaskForm
-from werkzeug.security import generate_password_hash, check_password_hash
-from wtforms import *
-from wtforms.validators import *
-import os
-import sqlite3
-from flask_ckeditor import CKEditor
-import datetime
-import flask_login
-from flask_login import LoginManager, UserMixin
+try:
+    import werkzeug
+    from flask import Flask, render_template, request, redirect, url_for
+    import requests
+    import smtplib
+    from flask_wtf import FlaskForm
+    from werkzeug.security import generate_password_hash, check_password_hash
+    from wtforms import *
+    from wtforms.validators import *
+    import os
+    import sqlite3
+    from flask_ckeditor import CKEditor
+    import datetime
+    import flask_login
+    from flask_login import LoginManager, UserMixin
+except ImportError:
+    pass
 
 app = Flask(__name__)
+
 
 SECRET_KEY = os.urandom(32)
 my_email = os.environ['MY_EMAIL']
 password1 = os.environ['MY_PASSWORD']
 app.config['SECRET_KEY'] = SECRET_KEY
 
+
 ckeditor = CKEditor(app)
+
 
 login_manager = LoginManager()
 login_manager.init_app(app)
