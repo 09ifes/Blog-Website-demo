@@ -3,4 +3,4 @@ A simple blog website where users can sign in to add/edit/delete blog posts, non
 
 Developed using Python, SQLite, Flask, Flask WTForms, Jinja, HTML and CSS (incl. Bootstrap)
 
-### Not currently deployed to a public server, but it can be accessed by downloading the project file and running main.py
+### Not currently deployed to a public server, but it can be accessed by downloading the project files and running main.py
