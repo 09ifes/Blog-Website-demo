@@ -18,9 +18,10 @@ app = Flask(__name__)
 
 
 SECRET_KEY = os.urandom(32)
+app.config['SECRET_KEY'] = SECRET_KEY
 my_email = os.environ['MY_EMAIL']
 password1 = os.environ['MY_PASSWORD']
-app.config['SECRET_KEY'] = SECRET_KEY
+
 
 
 ckeditor = CKEditor(app)
@@ -33,6 +34,7 @@ all_posts = []
 is_authenticated = False
 
 
+"""Class to be used to create user instances"""
 class User(UserMixin):
     id = 0
 
@@ -49,8 +51,9 @@ def current_date():
     year = datetime.date.today().year
     return f'{month} {day}, {year}'
 
-# use data from db to create json formatted data
+
 def json_convert(db_data):
+    """Uses data from database to create json formatted data"""
     parameters = ['id', 'title', 'subtitle', 'body', 'author', 'image_url', 'date']
     data = {}
     index = 0
@@ -108,10 +111,11 @@ user = User()
 def home():
     global all_posts, is_authenticated
     all_posts = []
-    db = sqlite3.connect("blog-posts.db")
-    cursor = db.cursor()
+    db = sqlite3.connect("blog-posts.db")          # Connects to database
+    cursor = db.cursor()                           # Activates database cursor
     all_data = cursor.execute("SELECT id, title, subtitle, body, author, image_url, date FROM blogs").fetchall()
     for n in all_data:
+        """Converts data to key:value format and stores in list"""
         blog_post = json_convert(n)
         all_posts.append(blog_post)
     return render_template("index.html", posts=all_posts, is_authenticated=is_authenticated)
@@ -119,6 +123,7 @@ def home():
 
 @app.route('/login', methods=["GET","POST"])
 def login():
+    """Creates login page, validates submitted login details and displays the necessary pages/errors"""
     global is_authenticated
     incorrect_details = False
     login_form = LoginForm()
@@ -164,6 +169,8 @@ def register():
        secure_password = hash_password(password)
        db = sqlite3.connect("blog-posts.db")
        cursor = db.cursor()
+
+       """Inserts entered data into db, if attempt fails, returns an error"""
        try:
            cursor.execute(
                 f"INSERT INTO users VALUES({unique_id('blog-posts.db', 'users')}, '{request.form.get('name')}',"
@@ -173,6 +180,7 @@ def register():
            email_exists = True
            return render_template('register.html', form=register_form, error=email_exists, is_authenticated=is_authenticated)
 
+       """Retrieves id and password from db, assigns id to user object attribute, and passes object to login_user function"""
        db = sqlite3.connect("blog-posts.db")
        cursor = db.cursor()
        data = cursor.execute(f"SELECT id, password FROM users WHERE email='{request.form.get('email')}'").fetchone()
@@ -193,13 +201,15 @@ def about():
 
 @app.route('/contact', methods=["GET","POST"])
 def contact():
+    """sends the email to the entered email address >> set this way for testing purposes"""
     global is_authenticated
     if request.method == "POST":
         name = request.form['name']
         email1 = request.form['email']
         phone = request.form['phone']
         message = request.form['message']
-        # code below sends email
+
+        """code below sends email"""
         with smtplib.SMTP('smtp-mail.outlook.com') as connection:
             connection.starttls()
             connection.login(user=my_email, password=password1)
