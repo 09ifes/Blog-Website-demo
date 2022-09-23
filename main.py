@@ -64,7 +64,7 @@ def json_convert(db_data):
 
 
 def unique_id(database, table):
-    # unique id >> highest value id + 1
+    # unique id = highest value id + 1
     blog_id = 0
     all_ids = []
     db = sqlite3.connect(database)
@@ -89,7 +89,7 @@ def create_table():
     cursor.execute("CREATE TABLE users(id INTEGER PRIMARY KEY, name varchar(250) NOT NULL,"
                     " email varchar(250) NOT NULL, password varchar(250) NOT NULL)")
 
-
+"""The 2 classes below determine the configuration for the components that will be used in the forms"""
 class LoginForm(FlaskForm):
     email = StringField(label='Email', validators=[DataRequired()])
     password = PasswordField('Password', validators=[DataRequired(message='This field is required')])
@@ -109,6 +109,7 @@ user = User()
 
 @app.route('/')
 def home():
+    """Retrieves the data from all blog posts in the database, to be displayed on the homepage"""
     global all_posts, is_authenticated
     all_posts = []
     db = sqlite3.connect("blog-posts.db")          # Connects to database
@@ -121,7 +122,7 @@ def home():
     return render_template("index.html", posts=all_posts, is_authenticated=is_authenticated)
 
 
-@app.route('/login', methods=["GET","POST"])
+@app.route('/login', methods=["GET", "POST"])
 def login():
     """Creates login page, validates submitted login details and displays the necessary pages/errors"""
     global is_authenticated
@@ -129,6 +130,7 @@ def login():
     login_form = LoginForm()
     email = login_form.email.data
     password = login_form.password.data
+
     if request.method == 'POST':
         db = sqlite3.connect("blog-posts.db")
         cursor = db.cursor()
