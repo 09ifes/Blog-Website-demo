@@ -64,7 +64,7 @@ def json_convert(db_data):
 
 
 def unique_id(database, table):
-    # unique id = highest value id + 1
+    # unique id in db = highest value id + 1
     blog_id = 0
     all_ids = []
     db = sqlite3.connect(database)
