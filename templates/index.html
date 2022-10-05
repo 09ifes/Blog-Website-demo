@@ -22,15 +22,15 @@
   </div>
 
    <div class="homepage-content">
-      {% for n in posts: %}
+      {% for n in range(0,length): %}
         <div class="homepage-post1">
-         <a class="homepage-read-more" href="{{ url_for('show_post', number=n['id']) }}">
-          <h1 class="homepage-h1">{{n['title']}}</h1>
-          <h2 class="homepage-h2">{{n['subtitle']}}</h2> </a>
+         <a class="homepage-read-more" href="{{ url_for('show_post', number=n+1) }}">
+          <h1 class="homepage-h1">{{ posts[n]['title'] }}</h1>
+          <h2 class="homepage-h2">{{ posts[n]['subtitle'] }}</h2> </a>
           <div class="homepage-post-date">
-            <p class="homepage-post-date" style="width:80%; min-height:10px">Posted by <span style="font-weight: 600; color: black; font-style: italic;">{{ n['author'] }}</span> on {{ n['date'] }}</p>
+            <p class="homepage-post-date" style="width:80%; min-height:10px">Posted by <span style="font-weight: 600; color: black; font-style: italic;">{{ posts[n]['author'] }}</span> on {{ posts[n]['date'] }}</p>
             {% if is_authenticated: %}
-              <a style="position: relative; left: 25%;" href="{{ url_for('delete_post',number=n['id']) }}">Delete</a>
+              <a style="position: relative; left: 25%;" href="{{ url_for('delete_post',number=posts[n]['id']) }}">Delete</a>
             {% endif %}
           </div>
          </div>

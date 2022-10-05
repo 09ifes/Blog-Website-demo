@@ -27,7 +27,7 @@
       {{ posts[n-1]['body'] | safe }}
    </div>
    {% if is_authenticated: %}
-    <a class="nav-link button" id="older-posts" href="{{ url_for('edit_post',post_id=n) }}">Edit Post</a>
+    <a class="nav-link button" id="older-posts" href="{{ url_for('edit_post', number=n) }}">Edit Post</a>
    {% endif %}
    <hr class="post-divider" style="width:100%">
 

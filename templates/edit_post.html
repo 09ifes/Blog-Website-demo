@@ -26,7 +26,7 @@
   </div>
 
    <div class="contact-content">
-     <form style="margin-top:50px" action="{{ url_for('edit_post',post_id=number) }}" method="post">
+     <form style="margin-top:50px" action="{{ url_for('edit_post', number=number) }}" method="post">
       <div class="new-post-form">
        {{ form.title.label(style="font-weight:bold; margin-top:20px") }} <br> {{ form.title(size=60, value=post['title']) }} <br>
        {{ form.subtitle.label(style="font-weight:bold; margin-top:20px") }} <br> {{ form.subtitle(size=60, value=post['subtitle']) }} <br>
